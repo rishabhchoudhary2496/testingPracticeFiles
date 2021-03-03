@@ -4,3 +4,8 @@ node_modules/
 .env
 jest-integration-test/node_modules/
 jest-integration-test/*.log
+jest-integration-test/coverage
+learning-puppeteer/node_modules/
+learning-puppeteer/*.png
+learning-puppeteer/*.jpeg
+learning-puppeteer/*.jpg
