@@ -1,0 +1,53 @@
+<%-include('./partials/NavBar',{loggedInUserId:loggedInUserId})%>
+<div class="container-fluid">
+  <div class="row mt-4">
+    <div class="col-2"></div>
+    <div class="col-8 mt-4">
+      <h2 class="text text-center text-info">Create Blog</h2>
+      <form id="createBlog" novalidate method="POST" class="form-container">
+        <div class="form-group my-3">
+          <input
+            type="text"
+            class="form-control"
+            id="title"
+            name="title"
+            aria-describedby="blogTitle"
+            placeholder="Blog Title"
+            required
+            data-pristine-required-message="Title Required"
+            class="form-control"
+            data-pristine-minlength="3"
+            required
+          />
+        </div>
+        <div class="form-group my-3">
+          <textarea
+            rows="10"
+            class="form-control"
+            id="content"
+            name="content"
+            placeholder="content goes here"
+            required
+            data-pristine-required-message="Content Required"
+          ></textarea>
+        </div>
+        <div class="form-group my-3">
+          <input
+            type="text"
+            class="form-control"
+            name="tags"
+            id="tags"
+            placeholder="Tags"
+          />
+          <div id="tagHelp" class="form-text">
+            Add Multiple Tags by using commas eg. Tag1,Tag2
+          </div>
+        </div>
+        <button type="submit" class="btn btn-info">Post blog</button>
+      </form>
+    </div>
+    <div class="col-2"></div>
+  </div>
+</div>
+<script src="/public/js/pristine.js"></script>
+<script src="/public/js/CreateBlog.js"></script>

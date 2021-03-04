@@ -1,0 +1,76 @@
+body {
+  /* background-color: #ffc600; */
+}
+
+a {
+  text-decoration: none;
+}
+
+.has-success .form-control {
+  border: 2px solid #28a745;
+}
+
+.has-danger .form-control {
+  border: 2px solid #dc3545;
+}
+
+.form-group .text-help {
+  color: #dc3545;
+}
+
+.profile-pic {
+  vertical-align: text-bottom;
+}
+
+.blog-content::first-letter {
+  font-family: 'Source Sans Pro', Arial, Helvetica, sans-serif;
+  float: left;
+  font-size: 6rem;
+  line-height: 0.65;
+  margin: 0.1em 0.1em 0.2em 0;
+}
+
+.text-important {
+  font-weight: 500;
+}
+
+.fa-thumbs-up {
+  font-size: 1.2rem;
+  margin-right: 0.7rem;
+  cursor: pointer;
+}
+
+.fa-thumbs-down {
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.text-inline-block {
+  display: inline-block;
+}
+
+.trash {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  font-size: 1;
+  cursor: pointer;
+}
+
+.editIcon {
+  position: absolute;
+  right: 35px;
+  top: 10px;
+  font-size: 1;
+  cursor: pointer;
+}
+
+.blog-content {
+  font-family: 'Open Sans', sans-serif;
+  letter-spacing: 0.6px;
+  padding-top: 10px;
+}
+
+.hideElement {
+  display: none;
+}

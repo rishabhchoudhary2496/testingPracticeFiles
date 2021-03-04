@@ -1,0 +1,23 @@
+<%-include('./partials/NavBar',{loggedInUserId:loggedInUserId})%>
+<div class="container-fluid">
+<div class="row mt-3">
+    <div class="col-1"></div>
+    <div class="col-10 ">
+        <% for(let i=0; i<blogs.length; i++) { %>
+                <div class="card mt-3 mb-3 p-3">
+                    <a href="/user/profile/<%=blogs[i].authorId._id%>">
+                        <div>
+                            <p class="text text-danger text-important"><img src="http://localhost:5000/<%=blogs[i].authorId.profilePic%>" alt="author pic" width=25 height=25 class="rounded-circle profile-pic"> <%=blogs[i].authorId.name%></p>
+                        </div>
+                    </a>
+                    <h5 class="text text-info"><%=blogs[i].title%></h5>
+                    <p class="text text-danger text-important" id="date">Published On: <%=new Date(blogs[i].createdAt).toDateString()%></p>
+                        <div class="col-sm-3">
+                            <a href= <%=blogs[i]._id%> class="btn btn-warning px-2">Read Blog</a>
+                        </div>
+                </div>
+                <% } %>  
+    <div class="col-1"></div>
+    </div>
+</div>
+ </div>

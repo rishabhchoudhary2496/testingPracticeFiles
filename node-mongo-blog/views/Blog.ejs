@@ -1,0 +1,179 @@
+
+<div class="row mt-4">
+  <div class="col-2"></div>
+  <div class="col-8">
+    <% if (data.blog) { %>
+    <h2 class="text text-info text-center mt-2"><%= data.blog.title %></h2>
+    <div>
+      <p class="blog-content mt-3 "><%= data.blog.content %></p>
+    </div>
+    <% if (data.blog.authorId) { %>
+    <a href="/user/profile/<%=data.blog.authorId._id%>">
+      <div class="mx-3 mt-3">
+        <p class="text text-danger mt-4">
+          <img
+            src="http://localhost:5000/<%= data.blog.authorId.profilePic %>"
+            alt="author pic"
+            width="25"
+            height="25"
+            class="rounded-circle profile-pic"
+          />
+          <%=data.blog.authorId.name%>
+        </p> 
+      </div>
+      </a>
+
+        <% if (data.likeCount.length > 0) { %>
+          <% if (data.likeCount[0].count === 1) { %>
+              <p class="text text-info text-important text-inline-block "><%=data.likeCount[0].count%> Like</p>
+
+          <%}%>
+
+            <% if (data.likeCount[0].count > 1) { %>
+              <p class="text text-info text-important text-inline-block "><%=data.likeCount[0].count%> Likes</p>
+          <%}%>
+         <%}%>
+
+         
+         <% if (data.dislikeCount.length > 0) { %>
+             <% if (data.dislikeCount[0].count === 1) { %>
+             <p class="text text-info text-important text-inline-block "><%=data.dislikeCount[0].count%> Dislike</p>
+            <%}%>
+            
+            <% if (data.dislikeCount[0].count > 1) { %>
+                <p class="text text-info text-important text-inline-block "><%=data.dislikeCount[0].count%> Dislikes</p>
+            <%}%>
+
+         <%}%>
+
+        <div class="mt-4">
+          <% if(data.loggedInUserLiked) { %>
+            <i class="fas fa-thumbs-up text-primary" id="thumbsUp"><span>Like</span></i>
+           <%}%> 
+          <% if(!data.loggedInUserLiked) { %>
+            <i class="far fa-thumbs-up" id="thumbsUp"><span>Like</span></i>
+          <%}%>
+
+          <% if(data.loggedInUserDisliked) { %>
+            <i class="fas fa-thumbs-down text-primary" id="thumbsDown"><span>Dislike</span></i>
+          <%}%>
+
+          <% if(!data.loggedInUserDisliked) { %>
+            <i class="far fa-thumbs-down" id="thumbsDown"><span>Dislike</span></i>
+          <%}%>
+        </div>
+
+    <%}%> <%}%>
+  </div>
+  <div class="col-2"></div>
+</div>
+<div class="row mt-4">
+  <div class="col-2"></div>
+  <div class="col-8">
+    <form novalidate id="comment-form" class="form-container">
+      <div class="form-group my-3">
+        <textarea
+          class="form-control"
+          id="comment"
+          name="commentText"
+          placeholder="comment here"
+          required
+          data-pristine-required-message="Comment Required"
+        ></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary">
+        Post Comment
+      </button>
+    </form>
+  </div>
+  <div class="col-2"></div>
+</div>
+<div class="row mb-3">
+    <div class="col-2"></div>
+    <div class="col-8">
+    <% if (data.comments) { %> 
+    <% for(let i=0; i<data.comments.length; i++) { %>
+      <div class="card mt-3 p-3">
+        <div class="mt-3">
+         <a href="/user/profile/<%=data.comments[i].userId._id%>">
+         <span class="text text-danger">
+          <img
+            src="http://localhost:5000/<%= data.comments[i].userId.profilePic %>"
+            alt="author pic"
+            width="25"
+            height="25"
+            class="rounded-circle profile-pic"
+          />
+           <%=data.comments[i].userId.name%>
+          </span>
+        </a>
+         </div>
+
+         <div class="hideElement" id="updateCommentBox">
+           <textarea id="editCommentArea" class="form-control mt-2">
+          </textarea>
+          <button class="btn btn-warning mb-3 mt-2" id="updateCommentBtn"  data-commentid="<%=data.comments[i]._id%>">update</button>
+         </div>
+
+        <p class="text mt-2" id="commentText"><%=data.comments[i].commentText%></p>
+        
+        <% if (String(data.comments[i].userId._id) === String(data.loggedInUserId)) { %>
+          <i class="fas fa-pencil-alt editIcon text text-primary" id='editCommentIcon' ></i>
+          <i class="fas fa-trash text text-danger trash" id="trashBtn" data-commentid="<%=data.comments[i]._id%>"></i>
+          <%}%>
+        <div>
+        <textarea
+          class="form-control"
+          id="reply"
+          name="replyText"
+          placeholder="reply here"
+          required
+         ></textarea>
+        <button type="submit" data-commentid="<%=data.comments[i]._id%>"  id="replyBtn" class="btn btn-success mt-2">Post Reply</button>
+        </form>
+        </div>
+        <div id="replies">
+         <% for(let j=0; j<data.comments[i].replies.length; j++){%>
+            <div class="reply mt-3 card p-3">
+              <div>
+              <a href="/user/profile/<%=data.comments[i].replies[j].userId._id%>">
+                <span class="text text-danger">
+                <img
+                src="http://localhost:5000/<%=data.comments[i].replies[j].userId.profilePic%>"
+                alt="author pic"
+                width="25"
+                height="25"
+                class="rounded-circle profile-pic"
+              />
+                <%=data.comments[i].replies[j].userId.name%>
+               </span>
+              </a>
+              </div>
+
+         <div class="hideElement" id="updateReplyBox">
+            <textarea id="editReplyArea" class="form-control mt-2">
+            </textarea>
+            <button class="btn btn-warning mb-3 mt-2" id="updateReplyBtn"  data-commentid="<%=data.comments[i]._id%>" data-replyid="<%=data.comments[i].replies[j]._id%>">update</button>
+         </div>
+
+        <% if (String(data.comments[i].replies[j].userId._id) === String(data.loggedInUserId)) { %>
+          <i class="fas fa-pencil-alt editIcon text text-primary" id="editReplyIcon"></i>
+          <i class="fas fa-trash text text-danger trash" id="replyTrashBtn" data-replyid="<%=data.comments[i].replies[j]._id%>"></i>
+          <%}%>
+         
+              <p class="text mt-2"><%=data.comments[i].replies[j].replyText%></p>
+            </div>
+
+         <% } %>
+        </div>
+      </div>
+      <% } %> 
+  <%}%>
+    </div>
+    <div class="col-2"></div>
+</div>
+
+<script src="/public/js/LikeDislike.js"></script>
+<script src="/public/js/pristine.js"></script>
+<script src="/public/js/CommentScript.js"></script>
+<script src="/public/js/PostReply.js"></script>
