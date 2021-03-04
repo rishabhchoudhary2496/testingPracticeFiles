@@ -10,6 +10,8 @@ learning-puppeteer/*.png
 learning-puppeteer/*.jpeg
 learning-puppeteer/*.jpg
 node-mongo-blog/node_modules/
-node-mongo-blog/uploads
+node-mongo-blog/uploads/*.png
+node-mongo-blog/uploads/*.jpeg
+node-mongo-blog/uploads/*.jpg
 learning-puppeteer/*.png
 learning-puppeteer/*.pdf
