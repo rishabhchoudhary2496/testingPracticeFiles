@@ -11,5 +11,6 @@ learning-puppeteer/*.jpeg
 learning-puppeteer/*.jpg
 node-mongo-blog/node_modules/
 node-mongo-blog/uploads/
+
 learning-puppeteer/*.png
 learning-puppeteer/*.pdf
